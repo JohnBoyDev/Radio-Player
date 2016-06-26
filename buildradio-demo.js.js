@@ -1,8 +1,3 @@
-   //////////////////////////////////////////////////
-  //					John					 //
- //					  Channell				   //
-////////////////////////////////////////////////
-
 var Streamurl = "";
 // The stream's url. ie. http://xxx.xxx.xxx.xxx:0000/ or http://radio.example.com/
 
