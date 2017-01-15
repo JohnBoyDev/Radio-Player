@@ -13,5 +13,5 @@ A simple set of configuration files to make a station at the top of your page.
 * Customizable stream list.
 * Information and explinations.
 
-#### License
+### License
 The license used is the MIT License, which can be found here, [LICENSE.md](https://github.com/jbcjr3/SHOUTCast-Audio-Player/blob/master/LICENSE)
