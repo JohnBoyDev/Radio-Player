@@ -1,4 +1,4 @@
-# SHOUTCast-Audio-Player
+# Radio Player
 A simple set of configuration files to make a station at the top of your page.
 
 
@@ -11,7 +11,7 @@ A simple set of configuration files to make a station at the top of your page.
 * Local time based off of your device.
 * Accurate volume slider.
 * Customizable stream list.
-* Information and explinations.
+* Information and explanations.
 
 ### License
 The license used is the MIT License, which can be found here, [LICENSE.md](https://github.com/jbcjr3/SHOUTCast-Audio-Player/blob/master/LICENSE)
