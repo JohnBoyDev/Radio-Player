@@ -1,14 +1,17 @@
-# SHOUTCast-Audio-Player
+# Radio Player
 A simple set of configuration files to make a station at the top of your page.
 
 
-## Here is the demo of an HTML file using this script correctly.
-![Demo Image 1]
-(https://s31.postimg.org/6m7ldsdx5/Screenshot_1.png)
+### Screenshots
+![alt text](http://i.imgur.com/6JCFq0y.png "demo.html")
+![alt text](http://i.imgur.com/mpBaOU6.png "buildradio.js code")
+![alt text](http://i.imgur.com/9nHdorO.png "demo.html code")
 
-## Here is the demo of the JavaScript file.
-![Demo Image 2]
-(https://s32.postimg.org/pbynrilkj/Screenshot_2.png)
+### Features
+* Local time based off of your device.
+* Accurate volume slider.
+* Customizable stream list.
+* Information and explinations.
 
-## License
-The license used is the MIT License, which can be found here, [LICENSE.md](https://github.com/jbcjr3/SHOUTCast-Audio-Player/blob/master/LICENSE).
+### License
+The license used is the MIT License, which can be found here, [LICENSE.md](https://github.com/jbcjr3/SHOUTCast-Audio-Player/blob/master/LICENSE)
