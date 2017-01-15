@@ -32,7 +32,7 @@ var BigPlayer = false;
 var RadioHelpLocation = "radiohelp.html";
 // Location of the help file parallel to the website this is file built on.
 
-var Version = "2.3";
+var Version = "3.0";
 // Set by the developer, whenever you decide to make a change, add 0.1 to the version.
 
 /* Update Log
@@ -50,6 +50,10 @@ var Version = "2.3";
 / 2.3
 -- UI Changes
 -- Revamped Volume
+
+/ 3.0
+-- Significant UI Change
+-- Volume is now a slider
 
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
@@ -86,32 +90,32 @@ BuildCss()
 BuildPlayer()
 
 function BuildCss () {
-	var css = ".Builtradio{transition:all 1s;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;border:3px solid #000;border-radius:"+BoxRadius+";width:"+plrwidth+";height:auto;margin:auto;text-align:center;background-color:"+Backgroundcolors[0]+";font-size:1.25em;}.Builtradio audio{margin:2.5%;width:95%;height:auto;display:none;}.Builtradio hr{width:95%;}.Builtradio button{width:30%;margin-right:5px;margin-bottom:15px;font-size:65%;background-color:#000;border:2px solid silver;font-weight:700;height:auto;color:#fff;padding:15px 10px;text-align:center;text-decoration:none;display:inline-block;cursor:pointer;margin:4px 2px;}.Builtradio button:hover{font-style:italic;transition:all .25s;}.Builtradio h2{text-shadow: 0px 2px 15px #ffffff;}";
-	var dropdown = ".streams {transition:all 2s;position:relative;display:inline-block;margin-bottom:25px;padding:5px;width:100%;}.streams b {margin-bottom:20px;cursor:pointer;} .streams-content{padding-top:5px;transition:all .5s;overflow:hidden;max-height:0;}.streams:hover .streams-content {transition-delay: max-height 1s;max-height: 500px;opacity: 1;}"
+	var css = ".Builtradio{transition:all 1s;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;border:3px solid #000;border-radius:"+BoxRadius+";width:"+plrwidth+";height:auto;margin:auto;text-align:center;background-color:"+Backgroundcolors[0]+";font-size:1.25em;}.Builtradio audio{margin:2.5%;width:95%;height:auto;display:none;}.Builtradio hr{width:95%;}.Builtradio button{transition: all .5s;width:30%;margin-right:5px;margin-bottom:15px;font-size:65%;background-color:#000;border:2px solid silver;font-weight:700;height:auto;color:#fff;padding:15px 10px;text-align:center;text-decoration:none;display:inline-block;cursor:pointer;margin:4px 2px;}.Builtradio button:hover{background-color:#3f3f3f;}.Builtradio h2{text-shadow: 0px 2px 15px #ffffff;} input[type=range] {-webkit-appearance: none;width: 70%;border-radius: 8px;height: 7px;border: 1px solid #bdc3c7;background-color: #C9C9C9;margin-bottom:2em}input[type=range]::-webkit-slider-thumb {height: 20px;width: 20px;border-radius: 50px;}.streams-content,.streams {margin:1em 0em}";
 	var htmlDiv = document.createElement('div');
-	htmlDiv.innerHTML = '<p>foo</p><style type="text/css">' + css + dropdown + '</style>';
+	htmlDiv.innerHTML = '<p>foo</p><style type="text/css">' + css + '</style>';
 	document.getElementsByTagName('head')[0].appendChild(htmlDiv.childNodes[1]);
 }
 
 function BuildPlayer () {
-	var body = document.write("<div class='Builtradio' id='Player'><h2 id='Title'>",Streamnames[0],"</h2><audio controls id='Builtradio' autoplay ><source src=",Streams[0]," type='audio/mpeg' volume='10'><p>Your browser does not support audio streams.</p></audio><p id='Volume'>Current Volume:</p>")
+	var body = document.write("<div class='Builtradio' id='Player'><div id='top'><h2 id='Title'>",Streamnames[0],"</h2><audio controls id='Builtradio' autoplay><source src=",Streams[0]," type='audio/mpeg' volume='10'><p>Your browser does not support audio streams.</p></audio><p id='Volume'>Current Volume:</p>")
 	var player = document.getElementById("Builtradio");
-	var defaultvolume = 40;
+	var defaultvolume = 50;
 	var determinedname;
 	var volumenotice = document.getElementById("Volume");
+	var volumeslider = document.getElementById("VolSlide");
 	var time = document.getElementById("Time");
-	document.write("<button onclick='up()' class='button' type='button'>Volume Up</button><button onclick='down()' class='button' type='button'>Volume Down</button><button onclick='mute()' class='button' type='button'>Volume Mute</button><button onclick='openhelp()' class='button' type='button'>Help</button><hr noshade><p>Version "+Version+"</p><p id='Time'>Time Placeholder</p><div class='streams'><b>Stream List</b><div class='streams-content'>")
+	document.write("<input type='range' id='VolSlide' value='"+defaultvolume+"' oninput='volchange()'><br><button onclick='openhelp()' class='button' type='button'>Information</button></div><div id='right'><div class='streams'><div id='bottom'><b>Stream List</b><div class='streams-content'>")
 	for (i = 0; i < Streams.length; i++) {
     	document.write("<button onclick='strm",i,"()' id='Streambtn",i,"' class='button' type='button'>Stream ",i+1,"<br>"+Streamnames[i]+"</button>")
-    	document.write("<script type='text/javascript'> if(Streamnames[i]==undefined){Streamnames[i] = 'Radio Stream'}if(Streamnames[i]!=undefined){determinedname = 'Streamnames[i]'}function strm",i,"() {document.getElementById('Builtradio').src='"+Streams[i]+"';document.getElementById('Title').innerHTML='"+determinedname+"';document.getElementById('Player').style.backgroundColor='"+Backgroundcolors[i]+"';}</script>")
+    	document.write("<script type='text/javascript'> function volchange () {player.volume = document.getElementById('VolSlide').value/100}function strm",i,"() {document.getElementById('Builtradio').src='"+Streams[i]+"';document.getElementById('Title').innerHTML='"+Streamnames[i]+"';document.getElementById('Player').style.backgroundColor='"+Backgroundcolors[i]+"';}</script>")
 	}
-	var practicalvol = defaultvolume/100;
+	var practicalvol = document.getElementById("VolSlide").value/100;
 	player.volume = practicalvol;
-	document.write("</div></div></div>")
-	document.write('<script type="text/javascript">var volume = ',defaultvolume,';var bgcolor=document.getElementById("Player"); var player=document.getElementById("Builtradio"); var title=document.getElementById("Title"); function up() {if(player.volume!=1) {player.volume=player.volume+0.1;volume=volume+10;}} function down() {if (player.volume!=0) {player.volume=player.volume-0.1;volume=volume-10;}} function mute() {player.volume=0;volume=0;}function openhelp() {window.open("'+RadioHelpLocation+'", "myWindow", "width=725,height=600");}</script>')
+	document.write("</div></div></div></div><div id='end'><hr><p>Version "+Version+"</p><p id='Time'>Time Placeholder</p></div>")
+	document.write('<script type="text/javascript">var volume = ',defaultvolume,';var bgcolor=document.getElementById("Player"); var player=document.getElementById("Builtradio"); var title=document.getElementById("Title"); function openhelp() {window.open("'+RadioHelpLocation+'", "myWindow", "width=725,height=600");}</script>')
 	var i;
 	function go () {
-		volumenotice.innerHTML = "Current Volume: "+volume+"%";
+		volumenotice.innerHTML = "Current Volume: "+document.getElementById("VolSlide").value+"%";
 		i++;
 		setTimeout(go,0.001);
 	}
