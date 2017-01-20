@@ -1,5 +1,5 @@
 // John Channell | The following is an example of what you can listen to, edit as you please.
-	// Each StreamURL must have a title, and background color with it. Add an extra line per stream, even if blank.
+	// Each StreamURL must have a title, and background color with it.
 
 var Streams = [
 "http://wqen-fm.akacast.akamaistream.net/7/895/31814/v1/auth.akacast.akamaistream.net/wqen-fm.mp3",
@@ -32,7 +32,7 @@ var BigPlayer = false;
 var RadioHelpLocation = "radiohelp.html";
 // Location of the help file parallel to the website this is file built on.
 
-var Version = "3.0";
+var Version = "3.1";
 // Set by the developer, whenever you decide to make a change, add 0.1 to the version.
 
 /* Update Log
@@ -55,20 +55,20 @@ var Version = "3.0";
 -- Significant UI Change
 -- Volume is now a slider
 
+/ 3.1
+-- Ability to change types of styles.
+
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 // Functions, and Callbacks
 	// Recommended that you don't touch this, but I'm not gonnna stop ya.
 
-for (i = 0; i < Backgroundcolors.length; i++) {
-	if (Backgroundcolors[i]==""||Streamnames[i]==undefined) {
-		Backgroundcolors[i] = "#777"
-	}
-}
-
-for (i = 0; i < Streamnames.length; i++) {
-	if (Streamnames[i]=="") {
+for (i = 0; i < Streams.length; i++) {
+	if (Streamnames[i]==undefined||Streamnames[i]=="") {
 		Streamnames[i] = "Radio Stream"
+	}
+	if (Backgroundcolors[i]==undefined||Backgroundcolors[i]=="") {
+		Backgroundcolors[i] = "#777"
 	}
 }
 
@@ -81,30 +81,46 @@ if (Boxshape==true) {
 }
 
 if (BigPlayer==false||window.screen.width > 800) {
-	var plrwidth="32.5%";
+	var plrwidth="40%";
 } if (BigPlayer==true||window.screen.width < 800) {
 	var plrwidth="80% ";
 }
 
-BuildCss()
-BuildPlayer()
+var selection = document.write("<div id='Chooser'><h2>Choose a design type.</h2><br><button onclick='RunModern()'style='background-color:#6e6e6e;border:2px solid black;color:#fff;margin:2%;font-size:2vh;padding:.25em;'>Modern Design</button><button onclick='RunOld()'style='background-color:#6e6e6e;border:2px solid black;color:#fff;margin:2%;font-size:2vh;padding:.25em;'>Old Design</button></div>")
+var chooser = document.getElementById("Chooser");
 
-function BuildCss () {
-	var css = ".Builtradio{transition:all 1s;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;border:3px solid #000;border-radius:"+BoxRadius+";width:"+plrwidth+";height:auto;margin:auto;text-align:center;background-color:"+Backgroundcolors[0]+";font-size:1.25em;}.Builtradio audio{margin:2.5%;width:95%;height:auto;display:none;}.Builtradio hr{width:95%;}.Builtradio button{transition: all .5s;width:30%;margin-right:5px;margin-bottom:15px;font-size:65%;background-color:#000;border:2px solid silver;font-weight:700;height:auto;color:#fff;padding:15px 10px;text-align:center;text-decoration:none;display:inline-block;cursor:pointer;margin:4px 2px;}.Builtradio button:hover{background-color:#3f3f3f;}.Builtradio h2{text-shadow: 0px 2px 15px #ffffff;} input[type=range] {-webkit-appearance: none;width: 70%;border-radius: 8px;height: 7px;border: 1px solid #bdc3c7;background-color: #C9C9C9;margin-bottom:2em}input[type=range]::-webkit-slider-thumb {height: 20px;width: 20px;border-radius: 50px;}.streams-content,.streams {margin:1em 0em}";
+function RunModern() {
+	BuildPlayer()
+	var css = ".Builtradio{transition:all 1s;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;border:3px solid #000;border-radius:"+BoxRadius+";width:"+plrwidth+";height:auto;margin:auto;text-align:center;background-color:"+Backgroundcolors[0]+";font-size:1.25em;}.Builtradio audio{margin:2.5%;width:95%;height:auto;display:none;}.Builtradio hr{width:95%;}.Builtradio button{transition: all .25s;width:30%;margin-right:5px;margin-bottom:15px;font-size:65%;background-color:#000;border:2px solid silver;font-weight:700;height:auto;color:#fff;padding:15px 10px;text-align:center;text-decoration:none;display:inline-block;cursor:pointer;margin:4px 2px;}.Builtradio button:hover{background-color:#1c1c1c;}.Builtradio h2{text-shadow: 0px 2px 15px #ffffff;} input[type=range] {-webkit-appearance: none;width: 70%;border-radius: 8px;height: 7px;border: 1px solid #bdc3c7;background-color: #C9C9C9;margin-bottom:2em}.streams-content,.streams {margin:1em 0em}#streams {float:right}#radio {float:left}#streams,#radio{width:50%}.streams-content .button{width:40%}";
 	var htmlDiv = document.createElement('div');
 	htmlDiv.innerHTML = '<p>foo</p><style type="text/css">' + css + '</style>';
+	var otherDiv = document.createElement('div');
+	otherDiv.innerHTML = '<p>foo</p><title>Radio Player</title>';
 	document.getElementsByTagName('head')[0].appendChild(htmlDiv.childNodes[1]);
+	document.getElementsByTagName('head')[0].appendChild(otherDiv.childNodes[1]);
+}
+
+function RunOld() {
+	BuildPlayer()
+	var css = ".Builtradio{transition:all 1s;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;border:3px solid #000;border-radius:"+BoxRadius+";width:"+plrwidth+";height:auto;margin:auto;text-align:center;background-color:"+Backgroundcolors[0]+";font-size:1.25em;}.Builtradio audio{margin:2.5%;width:95%;height:auto;display:none;}.Builtradio hr{width:95%;}.Builtradio button{transition: all .25s;width:30%;margin-right:5px;margin-bottom:15px;font-size:65%;background-color:#000;border:2px solid silver;font-weight:700;height:auto;color:#fff;padding:15px 10px;text-align:center;text-decoration:none;display:inline-block;cursor:pointer;margin:4px 2px;}.Builtradio button:hover{background-color:#1c1c1c;}.Builtradio h2{text-shadow: 0px 2px 15px #ffffff;} input[type=range] {-webkit-appearance: none;width: 70%;border-radius: 8px;height: 7px;border: 1px solid #bdc3c7;background-color: #C9C9C9;margin-bottom:2em}input[type=range]::-webkit-slider-thumb {height: 20px;width: 20px;border-radius: 50px;}.streams-content,.streams {margin:1em 0em}";
+	var htmlDiv = document.createElement('div');
+	htmlDiv.innerHTML = '<p>foo</p><style type="text/css">' + css + '</style>';
+	var otherDiv = document.createElement('div');
+	otherDiv.innerHTML = '<p>foo</p><title>Radio Player</title>';
+	document.getElementsByTagName('head')[0].appendChild(htmlDiv.childNodes[1]);
+	document.getElementsByTagName('head')[0].appendChild(otherDiv.childNodes[1]);
 }
 
 function BuildPlayer () {
-	var body = document.write("<div class='Builtradio' id='Player'><div id='top'><h2 id='Title'>",Streamnames[0],"</h2><audio controls id='Builtradio' autoplay><source src=",Streams[0]," type='audio/mpeg' volume='10'><p>Your browser does not support audio streams.</p></audio><p id='Volume'>Current Volume:</p>")
+	chooser.remove()
+	var body = document.write("<div class='Builtradio' id='Player'><div id='radio'><h2 id='Title'>",Streamnames[0],"</h2><audio controls id='Builtradio' autoplay><source src=",Streams[0]," type='audio/mpeg' volume='10'><p>Your browser does not support audio streams.</p></audio><p id='Volume'>Current Volume:</p>")
 	var player = document.getElementById("Builtradio");
 	var defaultvolume = 50;
 	var determinedname;
 	var volumenotice = document.getElementById("Volume");
 	var volumeslider = document.getElementById("VolSlide");
 	var time = document.getElementById("Time");
-	document.write("<input type='range' id='VolSlide' value='"+defaultvolume+"' oninput='volchange()'><br><button onclick='openhelp()' class='button' type='button'>Information</button></div><div id='right'><div class='streams'><div id='bottom'><b>Stream List</b><div class='streams-content'>")
+	document.write("<input type='range' id='VolSlide' value='"+defaultvolume+"' oninput='volchange()'><br><button onclick='openhelp()' class='button' type='button'>Information</button></div><div id='streams'><div class='streams'><div id='bottom'><b>Stream List</b><div class='streams-content'>")
 	for (i = 0; i < Streams.length; i++) {
     	document.write("<button onclick='strm",i,"()' id='Streambtn",i,"' class='button' type='button'>Stream ",i+1,"<br>"+Streamnames[i]+"</button>")
     	document.write("<script type='text/javascript'> function volchange () {player.volume = document.getElementById('VolSlide').value/100}function strm",i,"() {document.getElementById('Builtradio').src='"+Streams[i]+"';document.getElementById('Title').innerHTML='"+Streamnames[i]+"';document.getElementById('Player').style.backgroundColor='"+Backgroundcolors[i]+"';}</script>")
