@@ -1,20 +1,18 @@
+![MIT Licence](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)
+![JavaScript](https://img.shields.io/badge/Language-JavaScript-yellow.svg?style=flat-square)
+
 # Radio Player
 A simple set of configuration files to make a station at the top of your page.
 
 
 ### Screenshots
-![alt text](http://i.imgur.com/Ik3BGsK.png "New Page")
-![alt text](http://i.imgur.com/G9lTu3S.png "Modern Design")
-![alt text](http://i.imgur.com/ew5Ny7l.png "Old Design")
-![alt text](http://i.imgur.com/mpBaOU6.png "buildradio.js code")
-![alt text](http://i.imgur.com/9nHdorO.png "demo.html code")
+![Rebuild Design](https://i.imgur.com/kt50Y2d.png "Rebuild Design")
 
 ### Features
-* Local time based off of your device.
-* Accurate volume slider.
-* Customizable stream list.
-* Information and explanations.
-* Two designs to choose from.
+* Local time based off of your device
+* Accurate volume slider
+* Customizable stream list
+* Information and explanations
 
 ### License
-The license used is the MIT License, which can be found here, [LICENSE.md](https://github.com/jbcjr3/SHOUTCast-Audio-Player/blob/master/LICENSE)
+The license used is the MIT License, which can be found here, [LICENSE](https://github.com/jbcjr3/Radio-Player/blob/master/LICENSE)
