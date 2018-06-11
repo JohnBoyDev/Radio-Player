@@ -2,7 +2,7 @@ title: Radio Player
 description: A simple set of configuration files to make a station at the top of your page.
 google_analytics: 
 show_downloads: true
-theme: jekyll-theme-minimal
+theme: jekyll-theme-midnight
 
 gems:
   - jekyll-mentions
