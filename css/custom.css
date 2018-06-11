@@ -1,0 +1,55 @@
+/*
+* Custom CSS
+* Copyright 2017, John Channell
+* 10/06/2017
+*/
+
+/* Table of contents:
+	- Helpers
+	- Miscellaneous
+	- Media Query
+*/
+
+/* Helpers */
+hr {
+	width: 50%;
+}
+input[type=range] {
+	-webkit-appearance: none;
+	width: 80%;
+	margin: 0 10%;
+	height: 2em;
+	background: #D8D8D8;
+	cursor: pointer;
+	opacity: 0.7;
+}
+input[type=range]:hover {
+	opacity: 1;
+}
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 2em;
+	width: 2em;
+	background: #AAAAAA;
+}
+
+/* Miscellaneous */
+#radioPlayer {
+	background-color: #EEEEEE;
+	padding: 2rem;
+	border: 1px solid #000;
+}
+
+/* Media Query */
+@media (max-device-width: 750px) {
+	.container {
+		width: 100%;
+	}
+	body {
+		font-size: 1.8em;
+	}
+	input[type=range] {
+		width: 100%;
+		margin: 0;
+	}
+}
