@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Radio Player</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- CSS -->
+		<link rel="stylesheet" href="css/skeleton-2.0.4.css">
+		<link rel="stylesheet" href="css/custom.css">
+	</head>
+	<body align="center">
+		<div class="container">
+			<h2>JavaScript Radio Player</h2>
+			<hr>
+			<div class="container" id="radioPlayer">
+				<h4 id="streamName"></h4>
+				<audio id="radioAudio" autoplay>
+					<source id="radioSource" src="">
+				</audio>
+				<p id="radioVolume">Volume: 0%</p>
+				<input type="range" id="volumeSlider" value="0" oninput="changeVolume(value)">
+				<hr>
+				<a class="button" href="radiohelp.html" target="_blank">More Information</a>
+				<h5>Version 1.0.0</h5>
+				<h5 id="localTime">Local Time: 00:00:00</h5>
+				<h6><strong>Stream:</strong></h6>
+				<select class="u-full-width" id="selectStation" onchange="changeStation(value);">
+					<option selected disabled>Select A Station</option>
+				</select>
+			</div>
+		</div>
+		<!-- Scripts -->
+		<script type="text/javascript" src="js/radiofunctions.js"></script>
+	</body>
+</html>
